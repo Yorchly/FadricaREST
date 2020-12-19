@@ -128,4 +128,20 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Excluding VS Files
 .vs/*
+bin/
+FadricaREST.*
+
+# excluding idea directory from pycharm
+.idea/
+
+# excluding migrations
+00*.py
+
+# excluding .history/
+.history/
+
+# excluding .vscode
+.vscode/
+
