@@ -7,9 +7,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["fadricarest.herokuapp.com"]
 
-# For collecting statics assets and serving them
-STATICFILES_STORAGE = 'common.storage.WhiteNoiseStaticFilesStorage'
-
 DATABASES = {
     "default": dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
