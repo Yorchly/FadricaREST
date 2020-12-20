@@ -24,7 +24,7 @@ EMAIL_USE_TLS = True
 
 # Mailing with errors to ADMINS
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
-ADMINS = [("Jorge", os.environ.get["ADMIN_EMAIL"])]
+ADMINS = [("Jorge", os.environ.get("ADMIN_EMAIL"))]
 
 # Secure options and Forcing Https connection
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
