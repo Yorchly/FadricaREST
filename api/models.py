@@ -26,4 +26,4 @@ class Roscon(CommonModel):
 
 
 class Token(CommonModel):
-    token = models.CharField(max_length=60)
+    token = models.CharField(max_length=60, unique=True)
