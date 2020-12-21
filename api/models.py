@@ -1,4 +1,7 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+from .utils import get_current_year
 
 
 class CommonModel(models.Model):
@@ -10,29 +13,16 @@ class CommonModel(models.Model):
 
 
 class TipoRoscon(CommonModel):
-    NATA = "NATA"
-    TRUFA = "TRUFA"
-    CREMA = "CREMA"
-    CIDRA = "CIDRA"
-    SECO = "SECO"
-    ESPECIAL = "ESPECIAL"
-    TIPO_ROSCON = [
-        (NATA, "nata"),
-        (TRUFA, "trufa"),
-        (CREMA, "crema"),
-        (CIDRA, "cidra"),
-        (SECO, "seco"),
-        (ESPECIAL, "especial"),
-    ]
-    tipo = models.CharField(max_length=50, choices=TIPO_ROSCON)
+    tipo = models.CharField(max_length=50, unique=True)
 
 
 class Roscon(CommonModel):
     cantidad = models.PositiveIntegerField()
-    tipo_roscon = models.OneToOneField(
+    tipo_roscon = models.ForeignKey(
         TipoRoscon,
         on_delete=models.PROTECT
     )
+    anno = models.SmallIntegerField(default=get_current_year())
 
 
 class Token(CommonModel):
