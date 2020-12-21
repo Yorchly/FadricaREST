@@ -136,9 +136,6 @@ FadricaREST.*
 # excluding idea directory from pycharm
 .idea/
 
-# excluding migrations
-00*.py
-
 # excluding .history/
 .history/
 
