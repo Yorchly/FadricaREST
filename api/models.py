@@ -1,6 +1,6 @@
-from django.db import models
+import datetime
 
-from .utils import get_current_year
+from django.db import models
 
 
 class CommonModel(models.Model):
@@ -21,7 +21,7 @@ class Roscon(CommonModel):
         TipoRoscon,
         on_delete=models.PROTECT
     )
-    anno = models.SmallIntegerField(default=get_current_year())
+    anno = models.SmallIntegerField(default=datetime.date.today().year)
 
 
 class Token(CommonModel):
