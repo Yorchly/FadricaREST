@@ -1,5 +1,9 @@
-import datetime
+from api.models import Token
 
 
-def get_current_year():
-    return datetime.date.today().year
+def check_token(token):
+    try:
+        Token.objects.get(token=token)
+        return True
+    except Token.DoesNotExist:
+        return False
