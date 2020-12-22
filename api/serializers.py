@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Roscon
+from .models import Roscon, TipoRoscon
+
+
+class TipoRosconSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoRoscon
+        fields = ["id", "tipo"]
 
 
 class RosconSerializer(serializers.ModelSerializer):
