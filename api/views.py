@@ -4,6 +4,7 @@ from rest_framework.viewsets import GenericViewSet
 from api.mixins import CheckTokenMixin
 from api.models import TipoRoscon, Roscon
 from api.serializers import TipoRosconSerializer, RosconSerializer
+from api.services.roscon import filter_qs
 
 
 class ListViewSet(CheckTokenMixin, ListModelMixin, GenericViewSet):
@@ -13,7 +14,7 @@ class ListViewSet(CheckTokenMixin, ListModelMixin, GenericViewSet):
 class ListCreateUpdateViewSet(CheckTokenMixin, ListModelMixin, UpdateModelMixin, CreateModelMixin, GenericViewSet):
     def put(self, request, *args, **kwargs):
         """
-        Si no se especifica la función put, no funciona correctamente el update
+        If put function is not specified, PUT method will not be showed as 'allowed method' in API.
         :param request:
         :param args:
         :param kwargs:
@@ -30,3 +31,20 @@ class TipoRosconListViewSet(ListViewSet):
 class RosconViewSet(ListCreateUpdateViewSet):
     queryset = Roscon.objects.all()
     serializer_class = RosconSerializer
+
+    def get_queryset(self):
+        """
+        Overriding get_queryset in order to process year query param for filtering.
+        :return:
+        """
+        year = self.request.query_params.get("year", None)
+
+        if year:
+            qs = filter_qs(anno=year)
+        else:
+            qs = super(RosconViewSet, self).get_queryset()
+
+        return qs
+
+
+
