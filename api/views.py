@@ -8,7 +8,11 @@ from api.utils import check_token
 
 
 class ListViewSet(ListModelMixin, GenericViewSet):
-    pass
+    def dispatch(self, request, *args, **kwargs):
+        if check_token(self.request.GET.get("token", None)):
+            return super(ListViewSet, self).dispatch(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden()
 
 
 class ListCreateUpdateViewSet(ListModelMixin, UpdateModelMixin, CreateModelMixin, GenericViewSet):

@@ -34,5 +34,16 @@ SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
+# For collecting statics assets and serving them
+STATICFILES_STORAGE = 'common.storage.WhiteNoiseStaticFilesStorage'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    # Place of admin's static files in Heroku server
+    os.path.join(BASE_DIR, "/app/.heroku/python/lib/python3.6/site-packages/django/contrib/admin/static/"),
+    # Place of django rest static files.
+    os.path.join(BASE_DIR, "/app/.heroku/python/lib/python3.6/site-packages/rest_framework/static")
+)
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())
