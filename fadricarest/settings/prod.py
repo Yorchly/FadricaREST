@@ -38,11 +38,11 @@ CSRF_COOKIE_SECURE = True
 STATICFILES_STORAGE = 'common.storage.WhiteNoiseStaticFilesStorage'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(PARENT_BASE_DIR, "static"),
     # Place of admin's static files in Heroku server
-    os.path.join(BASE_DIR, "/app/.heroku/python/lib/python3.6/site-packages/django/contrib/admin/static/"),
+    os.path.join(PARENT_BASE_DIR, "/app/.heroku/python/lib/python3.6/site-packages/django/contrib/admin/static/"),
     # Place of django rest static files.
-    os.path.join(BASE_DIR, "/app/.heroku/python/lib/python3.6/site-packages/rest_framework/static")
+    os.path.join(PARENT_BASE_DIR, "/app/.heroku/python/lib/python3.6/site-packages/rest_framework/static")
 )
 
 # Activate Django-Heroku.
